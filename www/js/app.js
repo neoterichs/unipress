@@ -1,5 +1,5 @@
 // JavaScript Document
-var globalip = "192.168.1.48/Web_Service";
+var globalip = "45.79.145.23/Web_Service";
 var token = "";
 angular.module('ionicApp', ['ionic','ngCordova','ngIOS9UIWebViewPatch','starter.controllers'])
 

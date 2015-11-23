@@ -1,0 +1,249 @@
+<html ng-app="ionicApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport"  content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+	<title>University Press</title>
+    <link href="lib/ionic/css/ionic.min.css" rel="stylesheet">
+	<script src="js/jquery-2.1.1.min.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.min.js"></script>
+    <script src="js/ng-cordova.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="js/angular-ios9-uiwebview.patch.js"></script>
+    <link href="css/style.css" rel="stylesheet">
+    <!--style css and javascript files for map-->
+   
+  </head>
+<body ng-controller="MainCtrl">
+<ion-nav-view></ion-nav-view>
+
+<script id="sign-in.html" type="text/ng-template">
+  <ion-view view-title="Cà Foscari University Press">
+  	
+	<ion-content class="bodycolor"> 
+	  	<div class="list card">
+			<div class="item item-image">
+				<img src="images/user100.png">
+		  	</div>
+		</div>
+		<center><button class="button button-energized">Tasks</button></center>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/event-menu.html" type="text/ng-template">
+  <ion-side-menus enable-menu-with-back-views="false">
+	<ion-side-menu-content>
+	  <ion-nav-bar class="header-bar">
+		<ion-nav-back-button>
+		</ion-nav-back-button>
+	  </ion-nav-bar>
+		<ion-nav-view name="menuContent"></ion-nav-view>
+	</ion-side-menu-content> 
+  </ion-side-menus>
+</script>
+
+<script id="templates/home.html" type="text/ng-template">
+  <ion-view view-title="Welcome">
+	<ion-content class="padding">
+	  <p>Swipe to the right to reveal the left menu.</p>
+	  <p>(On desktop click and drag from left to right)</p>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/check-in.html" type="text/ng-template">
+  <ion-view view-title="Cà Foscari University Press">
+  	<ion-nav-title style="height:70px;">
+      <img src="images/50icon.png" style="vertical-align:top; height:40px;">
+	  Cà Foscari University Press
+    </ion-nav-title>
+	<ion-content class="bodycolor"> 
+	  	<div class="list card">
+			<div class="item item-image">
+				<img src="images/user100.png">
+		  	</div>
+		</div>
+		<center><button class="button button-energized" ng-click="showtask()">Tasks</button></center>
+	</ion-content>
+  </ion-view>
+</script>
+
+
+<script id="templates/tasks.html" type="text/ng-template">
+  <ion-view view-title="Review">
+	<ion-content class="bodycolor">
+	<div class="row">
+	  <div class="col col-30" style="font-size:15px;" ng-click="showreview()">1. Review</div>
+	  <div class="col col-35"><button class="button {{buttoncolor11}}" ng-click="changecolor(11)">Accepted</button></div>
+	  <div class="col col-35" ><button class="button {{buttoncolor12}}" ng-click="changecolor(12)">Done</button></div>
+	</div>
+	<div class="row">
+	  <div class="col col-30" style="font-size:15px;" ng-click="showedit()">2. Editing</div>
+	  <div class="col col-35"><button class="button {{buttoncolor21}}" ng-click="changecolor(21)">Accepted</button></div>
+	  <div class="col col-35" ><button class="button {{buttoncolor22}}" ng-click="changecolor(22)">Done</button></div>
+	</div>
+	<div class="row">
+	  <div class="col col-30" style="font-size:15px;" ng-click="showtranslate()">3. Translation</div>
+	  <div class="col col-35"><button class="button {{buttoncolor31}}" ng-click="changecolor(31)">Accepted</button></div>
+	  <div class="col col-35" ><button class="button {{buttoncolor32}}" ng-click="changecolor(32)">Done</button></div>
+	</div>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/review.html" type="text/ng-template">
+  <ion-view view-title="List">
+	<ion-content class="bodycolor">
+	<ul class="list">
+			<li class="item bodycolor">
+				<a class="item-icon-right bodycolor" ng-click="showreviewdetail(1)">1. Article A by John Smith
+					 <i class="icon ion-ios-arrow-right"></i>
+				</a>
+			</li>
+			<li class="item bodycolor">
+				<a class="item-icon-right bodycolor" ng-click="showreviewdetail(2)">2. Article B by Fred Malton
+					 <i class="icon ion-ios-arrow-right"></i>
+				</a>
+			</li>
+	</ul>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/reviewdetail.html" type="text/ng-template">
+  <ion-view view-title="Review Detail">
+	<ion-content class="bodycolor">
+	<div class="list">
+	  <label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Description:</span>
+		  <span class="input-label bodycolor">Economic report, 15 pages</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Deadline:</span>
+		  <span class="input-label bodycolor">14/01/2016</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Payment:</span>
+		  <span class="input-label bodycolor">10€</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Referent:</span>
+		  <span class="input-label bodycolor">Professor Giovanni Vaia</span>
+		</label>
+	  </div>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/reviewdetail1.html" type="text/ng-template">
+  <ion-view view-title="Review Detail">
+	<ion-content class="bodycolor">
+	<div class="list">
+	  <label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Description:</span>
+		  <span class="input-label bodycolor">Scientific dissertation, 21 pages</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Deadline:</span>
+		  <span class="input-label bodycolor">25/01/2016</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Payment:</span>
+		  <span class="input-label bodycolor">18€</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Referent:</span>
+		  <span class="input-label bodycolor">Professor Giovanni Vaia</span>
+		</label>
+	  </div>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/translate.html" type="text/ng-template">
+  <ion-view view-title="Translate">
+	<ion-content class="bodycolor">
+	<ul class="list">
+			<li class="item bodycolor">
+				<a class="item-icon-right bodycolor" ng-click="showtranslatedetail()">1. Article C by Jesse Stuart
+					 <i class="icon ion-ios-arrow-right"></i>
+				</a>
+			</li>
+	</ul>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/translatedetail1.html" type="text/ng-template">
+  <ion-view view-title="Translate Detail">
+	<ion-content class="bodycolor">
+	<div class="list">
+	  <label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Description:</span>
+		  <span class="input-label bodycolor">Sociological report, 40 pages</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Deadline:</span>
+		  <span class="input-label bodycolor">11/01/2016</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Payment:</span>
+		  <span class="input-label bodycolor">35€</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Referent:</span>
+		  <span class="input-label bodycolor">Professor Giovanni Vaia</span>
+		</label>
+	  </div>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/edit.html" type="text/ng-template">
+  <ion-view view-title="Edit">
+	<ion-content class="bodycolor">
+	<ul class="list">
+			<li class="item bodycolor">
+				<a class="item-icon-right bodycolor" ng-click="showeditdetail1()">1. Article C by Jesse Stuart
+					 <i class="icon ion-ios-arrow-right"></i>
+				</a>
+			</li>
+	</ul>
+	</ion-content>
+  </ion-view>
+</script>
+
+<script id="templates/editdetail1.html" type="text/ng-template">
+  <ion-view view-title="Edit Detail">
+	<ion-content class="bodycolor">
+	<div class="list">
+	  <label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Description:</span>
+		  <span class="input-label bodycolor">Historic essay, 34 pages</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Deadline:</span>
+		  <span class="input-label bodycolor">27/01/2016</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Payment:</span>
+		  <span class="input-label bodycolor">25€</span>
+		</label>
+		<label class="item item-input bodycolor">
+		  <span class="input-label bodycolor">Referent:</span>
+		  <span class="input-label bodycolor">Professor Giovanni Vaia</span>
+		</label>
+	  </div>
+	</ion-content>
+  </ion-view>
+</script>
+
+<div class="bar bar-footer footer-bar" style="height:40px;">
+  		<!--<div class="title">My Program</div>-->
+</div>
+</body>
+<script src="js/app.js"></script>
+<script src="js/controller.js"></script>
+</html>
+
+
